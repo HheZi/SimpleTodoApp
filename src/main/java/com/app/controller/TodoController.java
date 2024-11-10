@@ -14,33 +14,45 @@ import com.app.service.TodoService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
-
 @Controller
 public class TodoController {
 
 	@Autowired
 	private TodoService service;
 	
-	@GetMapping()
-	public String getMethod(Model model) {
-		return getEverything(model);
+	@GetMapping
+	public String home(Model model) {
+		return getEverythingToSeeAll(model);
 	}
 	
 	@PostMapping("/save")
 	public String saveAndGetAgain(@ModelAttribute Todo todo, Model model) {
 		service.saveTodo(todo);
-		return getEverything(model);
+		return getEverythingToSeeAll(model);
 	}
+	
+	@GetMapping("create")
+	public String getToCreate(Model model) {
+		model.addAttribute("todo", new Todo());
+		return "createOrUpdate";
+	}
+	
+	
+	@GetMapping("update/{id}")
+	public String getToUpdate(@PathVariable("id") Integer id, Model model) {
+		model.addAttribute("todo", service.findById(id));
+		return "createOrUpdate";
+	}
+	
 	
 	@GetMapping("delete/{id}")
 	public String deleteAndGet(@PathVariable("id") Integer id, Model model) {
 		service.deleteTodo(id);
-		return getEverything(model);
+		return getEverythingToSeeAll(model);
 	}
 	
 	
-	private String getEverything(Model model) {
+	private String getEverythingToSeeAll(Model model) {
 		model.addAttribute("todos", service.getAllTodos());
 		return "index";
 	}

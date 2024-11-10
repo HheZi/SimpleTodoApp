@@ -1,9 +1,13 @@
 package com.app.model;
 
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,20 +29,12 @@ import lombok.NoArgsConstructor;
 public class Todo {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	private String value;
 	
-//	@Column(name = "data_to_complete")
-//	private Instant dateToComplete;
+	@Column(name = "data_to_complete")
+	private LocalDateTime dateToComplete;
 	
-//	private Status status;
-	
-	@CreatedDate
-	@Column(name = "created_at")
-	private Instant createdAt;
-	
-	@LastModifiedDate
-	@Column(name = "update_at")
-	private Instant updateAt;
 }

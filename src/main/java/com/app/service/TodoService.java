@@ -20,11 +20,15 @@ public class TodoService {
 	
 	public Todo saveTodo(Todo todo) {
 		return repository.save(todo);
-		
 	}
 	
 	public void deleteTodo(Integer id) {
 		repository.deleteById(id);
 	}
+
+	public Todo findById(Integer id) {
+		return repository.findById(id).orElseGet(Todo::new);
+	}
+	
 	
 }
