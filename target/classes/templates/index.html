@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Todo App</title>
+<style>
+.home{
+	text-align: center;
+	font-size: 24px;
+}
+.home a{
+	text-decoration: none;
+	color: black;
+}
+.home a:hover{
+	color: black;
+	text-decoration: underline;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container home">
+			<a  href="/">Todo App</a>
+	</div>
+	<div class="container">
+		<div class="m-2"><a href="/create" class="btn btn-primary">Create New</a></div>
+		<table class="table text-center">
+		<thead>
+			<tr>
+				<th scope="col">Value</th>
+				<th>Date To Complete</th>
+				<th scope="col">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="todo : ${todos}" >
+				<td th:text="${todo.value}">value</td>
+				<td th:text="${#temporals.format(todo.dateToComplete, 'yyyy-MM-dd HH:mm')}">value</td>
+				<td>
+				<a class="btn btn-danger" th:href="@{/delete/{id}(id=${todo.id})}">Delete</a>
+				<a class="btn btn-warning" th:href="@{/update/{id}(id=${todo.id})}">Update</a>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,6 @@
+com/app/controller/TodoController.class
+com/app/model/Todo.class
+com/app/SimpleTodoAppApplication.class
+com/app/repository/TodoRepository.class
+com/app/service/TodoService.class
+com/app/model/Todo$TodoBuilder.class

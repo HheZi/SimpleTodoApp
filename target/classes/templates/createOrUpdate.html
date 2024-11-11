@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Todo App</title>
+<style>
+.home{
+	text-align: center;
+	font-size: 24px;
+}
+.home a{
+	text-decoration: none;
+	color: black;
+}
+.home a:hover{
+	color: black;
+	text-decoration: underline;
+}
+</style>
+</head>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<body>
+	<div class="container home">
+			<a  href="/">Todo App</a>
+	</div>
+	<div class="form-group m-2">
+		<form th:action="@{/save}" method="post">
+			<input type="hidden" th:value="${todo.id} ?: ''" name="id"
+				class="form-control m-2"> <input type="text" name="value"
+				th:value="${todo.value} ?: ''" class="form-control m-2"
+				placeholder="Value"><input type="datetime-local"
+				name="dateToComplete" th:value="${todo.dateToComplete}"
+				class="form-control m-2" placeholder="Date to complete">
+
+			<button type="submit" class="btn btn-primary">Save Todo</button>
+			<button type="reset" class="btn btn-danger">Reset</button>
+		</form>
+	</div>
+</body>
+</html>

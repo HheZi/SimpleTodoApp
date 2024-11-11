@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: SimpleTodoApp
+  datasource:
+    url: jdbc:postgresql://localhost:5432/TodoDB
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
