@@ -22,13 +22,14 @@ public class TodoController {
 	
 	@GetMapping
 	public String home(Model model) {
-		return getEverythingToSeeAll(model);
+		model.addAttribute("todos", service.getAllTodos());
+		return "index";
 	}
 	
 	@PostMapping("/save")
 	public String saveAndGetAgain(@ModelAttribute Todo todo, Model model) {
 		service.saveTodo(todo);
-		return getEverythingToSeeAll(model);
+		return "redirect:/";
 	}
 	
 	@GetMapping("create")
@@ -48,14 +49,7 @@ public class TodoController {
 	@GetMapping("delete/{id}")
 	public String deleteAndGet(@PathVariable("id") Integer id, Model model) {
 		service.deleteTodo(id);
-		return getEverythingToSeeAll(model);
+		return "redirect:/";
 	}
-	
-	
-	private String getEverythingToSeeAll(Model model) {
-		model.addAttribute("todos", service.getAllTodos());
-		return "index";
-	}
-	
 	
 }
